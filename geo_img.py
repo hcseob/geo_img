@@ -15,9 +15,6 @@ from PIL import Image
 import sys
 import time
 
-#TODO: py_lint
-#TODO: Comment everything
-#TODO: underscore functions
 class Circle(object):
     """A circle object with a method to check for overlap."""
     def __init__(self, x, y, radius, rgb=None):
