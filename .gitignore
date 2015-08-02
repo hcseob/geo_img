@@ -1,0 +1,6 @@
+*.pyc
+inputs/
+outputs/
+*.gdoc
+*.gslides
+.DS_Store
