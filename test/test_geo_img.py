@@ -50,31 +50,15 @@ class TestGI(unittest.TestCase):
 
 	def test_circles(self):
 		img_dims = (200, 139)
-		max_radius = 10
-		circles = Circles(max_radius, img_dims)
-		for k in range(10000):
-			r = random.randint(1, max_radius)
-			x = random.randint(0, img_dims[0] - 2*r)
-			y = random.randint(0, img_dims[1] - 2*r)
-			circle = Circle(x, y, r)
-			circles.add(circle)
-		draw_svg(circles, img_dims, './no_overlap.svg')
-
-	def test_debug(self):
-		img_dims = (200, 139)
-		max_radius = 10
-		circles = Circles(max_radius, img_dims)
-		
-		r1 = 4
-		x1 = 35
-		y1 = 18
-		c1 = Circle(x1, y1, r1)
-
-		r2 = 9
-		x2 = 41
-		y2 = 15
-		c2 = Circle(x2, y2, r2)
-
+		radiuses = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+		circles = Circles(img_dims)
+		for r in radiuses:
+			for k in range(1000):
+				x = random.randint(0, img_dims[0] - 2*r)
+				y = random.randint(0, img_dims[1] - 2*r)
+				circle = Circle(x, y, r)
+				circles.add(circle)
+			draw_svg(circles, img_dims, './no_overlap.svg')
 
 if __name__ == '__main__':
 	unittest.main()

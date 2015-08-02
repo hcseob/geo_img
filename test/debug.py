@@ -1,20 +1,20 @@
+import re
 import sys
 sys.path.append("../")
 from geo_img import *
 
 img_dims = (200, 139)
-max_radius = 10
-circles = Circles(max_radius, img_dims)
+circles = Circles(img_dims)
 
-r1 = 9
-x1 = 4
-y1 = 37
-c1 = Circle(x1, y1, r1)
-circles.add(c1)
+svgs = []
+svgs.append('<circle xmlns="http://www.w3.org/2000/svg" cx="60" cy="95" r="4" style="fill:rgb(255,255,255)"/>')
+svgs.append('<circle xmlns="http://www.w3.org/2000/svg" cx="52" cy="91" r="8" style="fill:rgb(255,255,255)"/>')
+for svg in svgs:
+	match = re.search(r'cx="(.+?)".+cy="(.+?)".+r="(.+?)"', svg)
+	r = int(match.group(3))
+	x = int(match.group(2)) - r
+	y = int(match.group(1)) - r
+	c = Circle(x, y, r)
+	circles.add(c)
 
-r2 = 9
-x2 = 7
-y2 = 51
-c2 = Circle(x2, y2, r2)
-circles.add(c2)
-draw_svg(circles, img_dims, './no_overlap.svg')
+draw_svg(circles, img_dims, './no_overlap_debug.svg')
